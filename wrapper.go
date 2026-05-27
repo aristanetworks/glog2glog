@@ -5,6 +5,7 @@
 package glog
 
 import (
+	"context"
 	"fmt"
 
 	aglog "github.com/aristanetworks/glog"
@@ -40,7 +41,18 @@ func Errorf(format string, args ...interface{}) {
 
 func Errorln(args ...interface{}) {
 	aglog.ErrorDepth(1, args...)
+}
 
+func ErrorContext(_ context.Context, args ...interface{}) {
+	aglog.ErrorDepth(1, args...)
+}
+
+func ErrorContextf(_ context.Context, format string, args ...interface{}) {
+	aglog.ErrorDepth(1, fmt.Sprintf(format, args...))
+}
+
+func ErrorContextDepth(_ context.Context, depth int, args ...interface{}) {
+	aglog.ErrorDepth(depth+1, args...)
 }
 
 func Exit(args ...interface{}) {
@@ -75,6 +87,18 @@ func Fatalln(args ...interface{}) {
 	aglog.FatalDepth(1, args...)
 }
 
+func FatalContext(_ context.Context, args ...interface{}) {
+	aglog.FatalDepth(1, args...)
+}
+
+func FatalContextf(_ context.Context, format string, args ...interface{}) {
+	aglog.FatalDepth(1, fmt.Sprintf(format, args...))
+}
+
+func FatalContextDepth(_ context.Context, depth int, args ...interface{}) {
+	aglog.FatalDepth(depth+1, args...)
+}
+
 func Flush() {
 	aglog.Flush()
 }
@@ -95,6 +119,18 @@ func Infoln(args ...interface{}) {
 	aglog.InfoDepth(1, args...)
 }
 
+func InfoContext(_ context.Context, args ...interface{}) {
+	aglog.InfoDepth(1, args...)
+}
+
+func InfoContextf(_ context.Context, format string, args ...interface{}) {
+	aglog.InfoDepth(1, fmt.Sprintf(format, args...))
+}
+
+func InfoContextDepth(_ context.Context, depth int, args ...interface{}) {
+	aglog.InfoDepth(depth+1, args...)
+}
+
 func Warning(args ...interface{}) {
 	aglog.WarningDepth(1, args...)
 }
@@ -109,4 +145,16 @@ func Warningf(format string, args ...interface{}) {
 
 func Warningln(args ...interface{}) {
 	aglog.WarningDepth(1, args...)
+}
+
+func WarningContext(_ context.Context, args ...interface{}) {
+	aglog.WarningDepth(1, args...)
+}
+
+func WarningContextf(_ context.Context, format string, args ...interface{}) {
+	aglog.WarningDepth(1, fmt.Sprintf(format, args...))
+}
+
+func WarningContextDepth(_ context.Context, depth int, args ...interface{}) {
+	aglog.WarningDepth(depth+1, args...)
 }
